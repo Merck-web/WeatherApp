@@ -1,8 +1,8 @@
 import "./App.css";
 import React, { useState } from "react";
 
-import { Input } from "./Input";
-import { Card } from "./Card";
+import { Input } from "./components/Input/Input";
+import { Card } from "./components/Card/Card";
 
 function App() {
   const [citiesList, setCitiesList] = useState([]);
