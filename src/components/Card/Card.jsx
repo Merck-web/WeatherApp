@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { API_KEY, API_URL } from "../../settings";
+import { useWeather } from "../../hooks/useWeather";
 
 import "../../App.css";
 
 export const Card = ({ city }) => {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    fetch(
-      `${API_URL}/weather?q=${city}&appid=${API_KEY}&units=metric&lang={ru}`
-    )
-      .then((res) => res.json())
-      .then(setData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const data = useWeather(city);
   if (!data) return null;
   const { name, weather, main } = data;
   const { description, icon } = weather[0];
