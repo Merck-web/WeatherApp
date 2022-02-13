@@ -56,6 +56,20 @@
   margin-left: 0;
 }
 
+.action-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-btn {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color:#fff;
+  font-weight: bold;
+  font-size: 25px;
+}
+
 .MainInfo {
   display: flex;
   flex-direction: column;

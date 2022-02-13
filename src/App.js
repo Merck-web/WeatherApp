@@ -6,11 +6,13 @@ import { Input } from "./components/Input/Input";
 import { CardList } from "./components/CardList/CardList";
 
 function App() {
-  const [citiesList, setCitiesList] = useCitiesList();
+  const [citiesList, dispatch] = useCitiesList();
   return (
     <div className='Main'>
-      <Input setCitiesList={setCitiesList} />
-      <div className='CardList'>{<CardList citiesList={citiesList} />}</div>
+      <Input dispatch={dispatch} />
+      <div className='CardList'>
+        {<CardList citiesList={citiesList} dispatch={dispatch} />}
+      </div>
     </div>
   );
 }
