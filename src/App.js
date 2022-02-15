@@ -6,11 +6,12 @@ import { Input } from "./components/Input/Input";
 import { CardList } from "./components/CardList/CardList";
 
 function App() {
-  const [citiesList, dispatch] = useCitiesList();
+  const [state, dispatch] = useCitiesList();
+  const { inputValue, editingCity, citiesList } = state;
   return (
-    <div className='Main'>
-      <Input dispatch={dispatch} />
-      <div className='CardList'>
+    <div className='container'>
+      <div className='Main'>
+        <Input dispatch={dispatch} inputValue={inputValue} editingCity={editingCity} />
         {<CardList citiesList={citiesList} dispatch={dispatch} />}
       </div>
     </div>

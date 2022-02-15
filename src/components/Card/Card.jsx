@@ -13,6 +13,13 @@ export const Card = memo(({ city, dispatch }) => {
     });
   };
 
+  const editCityCard = () => {
+    dispatch({
+      type: "EDIT_CITY_CARD",
+      payload: city,
+    });
+  };
+
   if (!data) return null;
   const { name, weather, main } = data;
   const { description, icon } = weather[0];
@@ -20,6 +27,9 @@ export const Card = memo(({ city, dispatch }) => {
   return (
     <div className='Card'>
       <div className='action-btn'>
+        <button onClick={editCityCard} className='delete-btn'>
+          Изменить
+        </button>
         <button onClick={removeCityCard} className='delete-btn'>
           X
         </button>

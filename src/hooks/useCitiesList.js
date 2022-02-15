@@ -1,6 +1,8 @@
 import { useEffect, useReducer } from "react";
 
 const initialState = {
+  inputValue: "",
+  editingCity: "",
   citiesList: JSON.parse(localStorage.getItem("citiesList")) || [],
 };
 
@@ -16,7 +18,32 @@ const reducer = (state, action) => {
     case "REMOVE_CITY_CARD": {
       const oldArray = state.citiesList;
       const newArray = oldArray.filter((el) => el !== action.payload);
-      return {...state, citiesList: newArray};
+      return { ...state, citiesList: newArray };
+    }
+    case "EDIT_CITY_CARD": {
+      return {
+        ...state,
+        inputValue: action.payload,
+        editingCity: action.payload,
+      };
+    }
+    case "EDIT_CITY_DONE": {
+      const { editingCity } = state;
+      const oldArray = state.citiesList;
+      const filterArray = oldArray.filter((el) => el !== editingCity);
+      const newArray = [...filterArray, action.payload];
+      return {
+        ...state,
+        citiesList: newArray,
+        inputValue: "",
+        editingCity: "",
+      };
+    }
+    case "CHANGE_INPUT_VALUE": {
+      return { ...state, inputValue: action.payload };
+    }
+    case "RESET_INPUT": {
+      return { ...state, inputValue: initialState.inputValue };
     }
     default:
       return initialState;
@@ -29,5 +56,5 @@ export const useCitiesList = () => {
   useEffect(() => {
     localStorage.setItem("citiesList", JSON.stringify(citiesList));
   }, [citiesList]);
-  return [citiesList, dispatch];
+  return [state, dispatch];
 };
