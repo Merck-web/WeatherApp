@@ -4,6 +4,7 @@ const initialState = {
   inputValue: "",
   editingCity: "",
   citiesList: JSON.parse(localStorage.getItem("citiesList")) || [],
+  orderBy: "name",
 };
 
 const reducer = (state, action) => {
