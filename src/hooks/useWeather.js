@@ -7,8 +7,17 @@ export const useWeather = (city) => {
     fetch(
       `${API_URL}/weather?q=${city}&appid=${API_KEY}&units=metric&lang={ru}`
     )
-      .then((res) => res.json())
-      .then(setData);
+      .then((res) => {
+        if (res.ok)
+          return res.json()
+        else
+          return null
+      })
+      .then(setData)
+
   }, [city]);
+
   return data;
+
+
 };
