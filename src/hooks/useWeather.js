@@ -8,16 +8,14 @@ export const useWeather = (city) => {
       `${API_URL}/weather?q=${city}&appid=${API_KEY}&units=metric&lang={ru}`
     )
       .then((res) => {
-        if (res.ok)
-          return res.json()
-        else
-          return null
+        if (res.ok) return res.json();
+        else return null;
+        // var newcitiesList = JSON.parse(localStorage.getItem("citiesList"));
+        // newcitiesList.pop();
+        // localStorage.setItem("MyRecords", JSON.stringify(newcitiesList));
       })
-      .then(setData)
-
+      .then(setData);
   }, [city]);
 
   return data;
-
-
 };
