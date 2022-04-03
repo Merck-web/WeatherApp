@@ -13,7 +13,8 @@ const reducer = (state, action) => {
       const newState = {
         ...state,
         citiesList: [...state.citiesList, action.payload],
-      }; //переопределяем citiesList на  [...state.citiesList, action.payload]
+        fullInfo: [action.payload]
+      };
       return newState;
     }
     case "REMOVE_CITY_CARD": {

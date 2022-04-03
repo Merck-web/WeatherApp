@@ -16,6 +16,27 @@ export const useWeather = (city) => {
       })
       .then(setData);
   }, [city]);
-
+  // console.log(data)
   return data;
+};
+
+export const useInfo = (info) => {
+  const [dataInfo, setdataInfo] = useState(null);
+  useEffect(() => {
+    for (let i = 0; i < info.length; i++) {
+      fetch(
+        `${API_URL}/weather?q=${info[i]}&appid=${API_KEY}&units=metric&lang={ru}`
+      )
+        .then((res) => {
+          if (res.ok) return res.json();
+          else return null;
+          // var newcitiesList = JSON.parse(localStorage.getItem("citiesList"));
+          // newcitiesList.pop();
+          // localStorage.setItem("MyRecords", JSON.stringify(newcitiesList));
+        })
+        .then(setdataInfo);
+    }
+  }, []);
+  // console.log(info.length)
+  return dataInfo;
 };
